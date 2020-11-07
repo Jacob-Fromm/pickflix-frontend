@@ -1,20 +1,17 @@
 import './App.css';
 import React, { Component } from 'react';
-import PickPage from './Pick Page/PickPage';
-import Profile from './Profile Page/Profile';
-import Welcome from './Welcome Page/Welcome';
 import TinderCards from './Pick Page/Pick Components/TinderCards'
+import NavBar from './NavBar'
 
 class App extends Component {
 
   render() {
   return (
-    <div className="App" >
-      {/* <PickPage/>
-      <Profile/>
-      <Welcome/> */}
-      <TinderCards />
-
+    <div className="root" >
+      <div >
+        <NavBar/>
+        <TinderCards />
+      </div>
     </div>
   );
   }

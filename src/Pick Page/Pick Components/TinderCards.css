@@ -2,24 +2,71 @@
     position: relative;
     width: 500px;
     padding: 20px;
-    max-width: 80vw;
-    height: 50vh;
+    max-width: 70vw;
+    height: 70vh;
     border-radius: 20px;
     background-size: cover;
     background-position: center;
-    /* box-shadow: 0px 18px 55px 0px rgba(0, 0, 0, 0.3); */
+    /* box-shadow: 0px 18px 55px 0px rgba(0, 0, 0, 0.014); */
 }
 
-.card > h2 {
+@keyframes popup {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    10% {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+    30% {
+        -webkit-transform: scale(.9);
+        transform: scale(.9);
+    }
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    57% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    64% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+/* .card > h1 {
     position: absolute;
     top: 10px;
     color: whitesmoke;
+    text-shadow: 1px 2px black;
+    animation-name: shake;
+    animation-duration: 90s;
+}
+
+.card > h4 {
+    position: relative;
+    top: 40px;
+    color: whitesmoke;
     text-shadow: 1px 2px black
+} */
+
+.card > h1 {
+    position: absolute;
+    bottom: 70px;
+    color: whitesmoke;
+    text-shadow: 1px 2px black;
 }
 
 .card > h4 {
     position: absolute;
-    top: 40px;
+    bottom: 40px;
     color: whitesmoke;
     text-shadow: 1px 2px black
 }
@@ -40,7 +87,7 @@
 .cardContainer {
     display: flex;
     justify-content: center;
-    margin-top: 10vh;
+    margin-top: 5vh;
 }
 
 .swipe {
@@ -50,3 +97,67 @@
 .center {
     text-align: center;
 ;}
+
+.infoText {
+    width: 100%;
+    padding-top: 10px;
+    justify-content: center;
+    display: flex;
+    color: white;
+    animation-name: popup;
+    animation-duration: .8s;
+}
+
+@keyframes shake-animation-right {
+    0% { transform:translate(0,0) }
+    20% { transform:translate(20px,0) }
+    40% { transform:translate(0,0) }
+    60% { transform:translate(20px,0) }
+    80% { transform:translate(0,0) }
+    100% { transform:translate(20px,0) }
+ }
+
+.jake {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: min-content;
+    max-height: min-content;
+    animation: shake-animation-right 01s ease infinite;
+}
+
+@keyframes shake-animation-left {
+    0% { transform:translate(0,0) }
+    20% { transform:translate(100px,0) }
+    40% { transform:translate(200px,0) }
+    60% { transform:translate(100px,0) }
+    80% { transform:translate(0,0) }
+    90% { transform:translate(100px,0) }
+    100% { transform:translate(0,0) }
+}
+@keyframes shake-animation-test {
+    0% { transform:translate(0,0) }
+    20% { transform:translate(100px,0) }
+    40% { transform:translate(200px,0) }
+    60% { transform:translate(100px,0) }
+    80% { transform:translate(0,0) }
+    90% { transform:translate(100px,0) }
+    100% { transform:translate(0,0) }
+}
+
+.sean {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: min-content;
+    max-height: min-content;
+    animation: shake-animation-left 2s ease infinite;
+}
+
+.hasibul {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    animation: shake-animation-test 4s ease infinite;
+}
