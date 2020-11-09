@@ -30,22 +30,34 @@ class TinderCards extends React.Component {
         .then(resp => resp.json())
         .then((moviesArray) => {
             this.setState({
-            movies: moviesArray
+            movies: moviesArray.filter(movie => movie.country === "USA"),
+            likedArray: []
             })
         })
     }
 
+    swipeHandler = (direction, movie) => {
+        console.log(direction, movie)
+        this.setState((prevState) => ({
+            likedArray: [...prevState.likedArray, movie]
+        }))
+        console.log(this.state.likedArray)
+    }
+
     render() {
         console.log(this.state.movies)
+        let firstFiftyMovies = this.state.movies.splice(0, 10)
+        console.log(firstFiftyMovies)
     return (
         <div>
             <h1 className="center">PickFlix</h1>
             <h4 className="center">Tinder... but for Netflix!</h4>
             <div className="cardContainer">
-            {this.state.movies.map(movie => (
+            {firstFiftyMovies.map(movie => (
                 <TinderCard
+                onSwipe={(direction) => this.swipeHandler(direction, movie)}
                 className="swipe"
-                key={movie.id}
+                key={movie.netflixid}
                 preventSwipe={['up', 'down']}
                 >
                 <div 

@@ -4,6 +4,7 @@ import PickPage from './Pick Page/PickPage';
 import Profile from './Profile Page/Profile';
 import Welcome from './Welcome Page/Welcome';
 import TinderCards from './TinderCards'
+import LogIn from "./Welcome Page/Welcome Containers/LogIn.jsx"
 
 class App extends Component {
 
@@ -13,6 +14,7 @@ class App extends Component {
       {/* <PickPage/>
       <Profile/>
       <Welcome/> */}
+      
       <TinderCards />
 
     </div>
