@@ -3,42 +3,11 @@
     width: 500px;
     padding: 20px;
     max-width: 70vw;
-    height: 70vh;
+    height: 60vh;
     border-radius: 20px;
     background-size: cover;
     background-position: center;
     /* box-shadow: 0px 18px 55px 0px rgba(0, 0, 0, 0.014); */
-}
-
-@keyframes popup {
-    0% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-    }
-    10% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1);
-    }
-    30% {
-        -webkit-transform: scale(.9);
-        transform: scale(.9);
-    }
-    50% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-    }
-    57% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-    }
-    64% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-    }
-    100% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-    }
 }
 
 /* .card > h1 {
@@ -108,7 +77,15 @@
     animation-duration: .8s;
 }
 
-@keyframes shake-animation-right {
+.filters {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    padding: 5vh 5vw 0 5vw;
+    align-items: center;
+}
+
+/* @keyframes shake-animation-right {
     0% { transform:translate(0,0) }
     20% { transform:translate(20px,0) }
     40% { transform:translate(0,0) }
@@ -161,3 +138,5 @@
     width: 100px;
     animation: shake-animation-test 4s ease infinite;
 }
+*/
+

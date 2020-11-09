@@ -1,7 +1,11 @@
 import './App.css';
 import React, { Component } from 'react';
-import TinderCards from './Pick Page/Pick Components/TinderCards'
 import NavBar from './NavBar'
+import PickPage from './Pick Page/PickPage';
+import Welcome from './Welcome Page/Welcome';
+import Profile from './Profile Page/Profile';
+import {Route} from 'react-router-dom'
+
 
 class App extends Component {
 
@@ -9,8 +13,10 @@ class App extends Component {
   return (
     <div className="root" >
       <div >
-        <NavBar/>
-        <TinderCards />
+        <NavBar/>  
+        <Route path="/pickpage" component={PickPage}/>
+        <Route path="/welcome" component={Welcome} />
+        <Route path="/profile" component={Profile} />
       </div>
     </div>
   );

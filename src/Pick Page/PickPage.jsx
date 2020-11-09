@@ -1,10 +1,14 @@
 import React from 'react';
+import TinderCards from './TinderCards'
+import Buttons from './Buttons';
+
 
 const PickPage = () => {
 
     return (
     <div>
-        <h1>Pick Page</h1>
+        <TinderCards />
+        {/* <Buttons/> */}
     </div>
     )
 
