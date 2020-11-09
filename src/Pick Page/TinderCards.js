@@ -2,6 +2,7 @@ import React from 'react';
 import TinderCard from 'react-tinder-card';
 import "./TinderCards.css"
 import GenreFilter from './GenreFilter';
+import { withAlert } from 'react-alert'
 
 class TinderCards extends React.Component {
 
@@ -9,7 +10,6 @@ class TinderCards extends React.Component {
         movies: [],
         likedMovies: [],
         likedArray: [],
-        removed: [],
         lastDirection: "",
         genreFilter: "All",
         languageFilter: "English",
@@ -23,7 +23,7 @@ class TinderCards extends React.Component {
             this.setState({
             // movies: moviesArray.sort(() => Math.random() - Math.random()).slice(0, 100).filter(movie => movie.country === "USA" && movie.language === "English")
             movies: moviesArray.filter(movie => movie.country === "USA" && movie.language === "English")
-
+            // need to render the movies that DO NOT match any of the movies in the likedMovies db
         })
         })
         fetch("http://localhost:3000/liked_movies")
@@ -40,11 +40,12 @@ class TinderCards extends React.Component {
             user_id: 2,
             movie_id: movie.id
         }
+        // const alert = this.props.alert;
         // Need to include the current_userid stuff here
         if(this.state.likedMovies.filter((obj) => {return obj.user.id === 2}).map(obj => obj.movie.netflixid).includes(movie.netflixid)) {
             console.log("Did not add")
+            // this.alert.show("You've already picked this flix!")
             alert("You've already picked this flix!")
-
         }
         else {
             console.log("adding movie")
@@ -137,7 +138,6 @@ class TinderCards extends React.Component {
                 <br></br>
             <div>
                 {this.state.lastDirection === 'right' ? <div className="flex"><h2 className='infoText'>Added to Liked Movies!</h2></div> 
-                : this.state.lastDirection === 'right' && this.state.likedArray[-1] ? <div className="flex"><h2 className='infoText'>Added to Liked Movies!</h2></div>
                 : this.state.lastDirection === 'left' ? <div className="flex"><h2 className='infoText'>That Movie Sucked!</h2></div> 
                 : <h2 className='infoText'>Swipe a card to get started!</h2>}
             </div>

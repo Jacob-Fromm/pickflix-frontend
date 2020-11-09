@@ -4,7 +4,7 @@ const ProfileInfo = () => {
 
     return (
     <div>
-        <h1>ProfileInfo</h1>
+        <h1>Profile</h1>
     </div>
     )
 

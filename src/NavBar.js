@@ -1,6 +1,7 @@
 import React from 'react'
 import PersonIcon from '@material-ui/icons/Person'
 import MovieIcon from '@material-ui/icons/Movie'
+import ForumIcon from '@material-ui/icons/FormatListNumberedRtl'
 import IconButton from '@material-ui/core/IconButton'
 import "./NavBar.css"
 import { Link } from 'react-router-dom'
@@ -18,6 +19,11 @@ const NavBar = () => {
             <Link to="/pickpage">
                 <IconButton>
                     <MovieIcon className="header__icon" fontSize="large"/>
+                </IconButton>
+            </Link>
+            <Link to="/welcome">
+                <IconButton>
+                    <ForumIcon className="header__icon" fontSize="large"/>
                 </IconButton>
             </Link>
         </div>

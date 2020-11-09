@@ -1,4 +1,8 @@
-.card {
+.container {
+    flex-wrap: wrap;
+  }
+
+.pickedcard {
     display: flex;
     width: 150px;
     padding: 20px;
@@ -11,21 +15,21 @@
 }
 
 
-.card > h1 {
+.pickedcard > h1 {
     position: absolute;
     bottom: 70px;
     color: whitesmoke;
     text-shadow: 1px 2px black;
 }
 
-.card > h4 {
+.pickedcard > h4 {
     position: absolute;
     bottom: 40px;
     color: whitesmoke;
     text-shadow: 1px 2px black
 }
-
-.card > h5 {
+/* 
+.pickedcard > h5 {
     position: absolute;
     bottom: 20px;
     color: whitesmoke;
@@ -36,34 +40,13 @@
     overflow-x: hidden;
     overflow-y: hidden;
 
-}
-
-ul {
-    list-style-type: none;
-  }
-
-.cardContainer {
-    display: flex;
+} */
+.flexthis {
     flex-wrap: wrap;
-    flex-basis: 100%;
-    justify-content: space-between;
+    padding: 20px;
 }
 
-.swipe {
-    position: absolute;
-}
-
-.center {
+h1 {
     text-align: center;
-;}
-
-.infoText {
-    width: 100%;
-    padding-top: 10px;
-    justify-content: center;
-    display: flex;
-    color: white;
-    animation-name: popup;
-    animation-duration: .8s;
+    color: whitesmoke;
 }
-

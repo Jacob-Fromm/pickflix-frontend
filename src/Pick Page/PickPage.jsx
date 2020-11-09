@@ -1,6 +1,5 @@
 import React from 'react';
 import TinderCards from './TinderCards'
-import Buttons from './Buttons';
 
 
 const PickPage = () => {
@@ -8,7 +7,6 @@ const PickPage = () => {
     return (
     <div>
         <TinderCards />
-        {/* <Buttons/> */}
     </div>
     )
 
