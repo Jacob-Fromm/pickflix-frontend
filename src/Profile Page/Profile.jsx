@@ -1,10 +1,15 @@
 import React from 'react';
+import FlixYouvePicked from './FlixYouvePicked'
+import "./Profile.css"
+import ProfileInfo from './ProfileInfo';
+
 
 const Profile = () => {
 
     return (
     <div>
-        <h1>Profile</h1>
+        <ProfileInfo/>
+        <FlixYouvePicked/>
     </div>
     )
 
