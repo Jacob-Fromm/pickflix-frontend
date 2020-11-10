@@ -15,15 +15,12 @@ const NavBar = () => {
                     <PersonIcon className="header__icon" fontSize="large"/>
                 </IconButton>
             </Link>
-            <h1>PickFlix: Tinder... but for Netflix!</h1>
+            <Link to="/welcome">
+                <img src="https://fontmeme.com/temporary/d5947c25c8c66e59884ec5b36ad1d770.png"/>
+            </Link>
             <Link to="/pickpage">
                 <IconButton>
                     <MovieIcon className="header__icon" fontSize="large"/>
-                </IconButton>
-            </Link>
-            <Link to="/welcome">
-                <IconButton>
-                    <ForumIcon className="header__icon" fontSize="large"/>
                 </IconButton>
             </Link>
         </div>

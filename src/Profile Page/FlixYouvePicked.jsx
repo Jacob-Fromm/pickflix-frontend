@@ -1,10 +1,11 @@
 import React from 'react';
+import LikedMovies from './LikedMovies';
 import "./Profile.css"
 
 class FlixYouvePicked extends React.Component {
 
     state= {
-        likedMovies: [],
+        likedMovies: []
     }
     
     componentDidMount = () => {
@@ -12,28 +13,22 @@ class FlixYouvePicked extends React.Component {
         .then(resp => resp.json())
         .then((likedMoviesArray) => {
             this.setState({
-            likedMovies: likedMoviesArray
+            likedMovies: likedMoviesArray.filter(obj => obj.user.id === 1)
             })
         })
+    }
+    
+    allLikedMovies = () => {
+        return this.state.likedMovies.map((movieObj) => <LikedMovies key={movieObj.id} movieObj={movieObj} /> )
     }
 
     render() {
     return (
     <div>
         <h1>FlixYouvePicked</h1>
-        <div className="cardContainer" >
-            {this.state.likedMovies.map(likedMovie => (
-                <div className="flexthis">
-                    <div 
-                    style={{ backgroundImage: `url(${likedMovie.movie.poster})` }}
-                    className="pickedcard">
-                        <h1>{likedMovie.movie.title}</h1>
-                        <h4>{likedMovie.movie.genre}</h4>
-                    </div>
-                </div>
-            ))}
-            </div>
-        
+        <ul className="cardContainer" >
+            {this.allLikedMovies()}
+        </ul>
     </div>
     )}
 

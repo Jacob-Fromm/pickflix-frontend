@@ -1,12 +1,18 @@
 import React from 'react';
-import LogIn from './LogIn'
+import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import "./LogIn.css"
 
 const Welcome = () => {
 
     return (
-    <div>
-        <h1>Welcome</h1>
-        <LogIn />
+    <div className="welcome">
+        <Link to="/login">
+            <Button variant="contained" class="welcomebutton" >Log In</Button>
+        </Link>
+        <Link to="/signup">
+            <Button variant="contained" class="welcomebutton" >New User?</Button>
+        </Link>
     </div>
     )
 

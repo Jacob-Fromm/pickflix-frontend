@@ -21,8 +21,8 @@ class TinderCards extends React.Component {
         .then(resp => resp.json())
         .then((moviesArray) => {
             this.setState({
-            // movies: moviesArray.sort(() => Math.random() - Math.random()).slice(0, 100).filter(movie => movie.country === "USA" && movie.language === "English")
-            movies: moviesArray.filter(movie => movie.country === "USA" && movie.language === "English")
+            movies: moviesArray.sort(() => Math.random() - Math.random()).slice(0, 100).filter(movie => movie.country === "USA" && movie.language === "English" && movie.media === "movie")
+            // movies: moviesArray.filter(movie => movie.country === "USA" && movie.language === "English")
             // need to render the movies that DO NOT match any of the movies in the likedMovies db
         })
         })

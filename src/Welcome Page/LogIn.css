@@ -1,0 +1,21 @@
+.welcomebutton {
+    justify-content: space-around;
+}
+
+.welcome {
+    padding: 15px;
+    height: 55vh;
+    margin: auto;
+    display: flex;
+    align-Items: center;
+    justify-content: center;
+}
+
+form {
+    padding: 15px;
+    height: 55vh;
+    margin: auto;
+    display: flex;
+    align-Items: center;
+    justify-content: center;
+}

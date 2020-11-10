@@ -13,9 +13,28 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import { white } from '@material-ui/core/colors';
+import { red } from '@material-ui/core/colors';
 
-export default function LogIn() {
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        color: red
+    },
+    margin: {
+        margin: theme.spacing(1),
+    },
+    withoutLabel: {
+        marginTop: theme.spacing(3),
+    },
+    textField: {
+        width: '20ch',
+    },
+}));
+
+export default function Signup() {
+    const classes = useStyles();
     const [values, setValues] = React.useState({
         amount: '',
         password: '',
@@ -24,33 +43,45 @@ export default function LogIn() {
         showPassword: false,
     });
 
-return (
+    const handleChange = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
+
+    const handleClickShowPassword = () => {
+        setValues({ ...values, showPassword: !values.showPassword });
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+
+  return (
     <div>
 
-        <form noValidate autoComplete="off">
+        <form className={classes.root} noValidate autoComplete="off">
             
-            <FormControl variant="outlined">
+            <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                 <TextField
                     id="outlined-secondary"
                     label="Email Address"
                     variant="outlined"
-                    color='white'
+                    color="white"
                 />
             </FormControl>
 
-            <FormControl variant="outlined">
+            <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                 <OutlinedInput
                     id="outlined-adornment-password"
                     type={values.showPassword ? 'text' : 'password'}
                     value={values.password}
-                    // onChange={handleChange('password')}
+                    onChange={handleChange('password')}
                     endAdornment={
                     <InputAdornment position="end">
                         <IconButton
                         aria-label="toggle password visibility"
-                        // onClick={handleClickShowPassword}
-                        // onMouseDown={handleMouseDownPassword}
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
                         edge="end"
                         >
                         {values.showPassword ? <Visibility /> : <VisibilityOff />}
@@ -61,7 +92,7 @@ return (
                 />
             </FormControl>
 
-            <FormControl variant="outlined">
+            <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                 <TextField
                     id="outlined-secondary"
                     label="Name"
@@ -70,7 +101,7 @@ return (
                 />
             </FormControl>
 
-            <FormControl variant="outlined">
+            <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                 <TextField
                     id="outlined-secondary"
                     label="Image"

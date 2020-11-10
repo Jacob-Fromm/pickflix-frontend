@@ -1,46 +1,35 @@
-.container {
+.cardContainer {
     flex-wrap: wrap;
   }
 
-.pickedcard {
+.container.pickedcard {
     display: flex;
     width: 150px;
     padding: 20px;
     max-width: 70vw;
     height: 200px;
     border-radius: 20px;
+    border-color: white;
     background-size: cover;
     background-position: center;
-    box-shadow: 0px 18px 55px 0px rgba(0, 0, 0, 0.014);
+    box-shadow: 0px 18px 55px 0px rgba(0, 0, 0, 0.493);
 }
 
 
-.pickedcard > h1 {
-    position: absolute;
-    bottom: 70px;
+.details> h1 {
+    position: relative;
+    bottom: 10px;
     color: whitesmoke;
     text-shadow: 1px 2px black;
 }
 
-.pickedcard > h4 {
+.details > h4 {
     position: absolute;
     bottom: 40px;
     color: whitesmoke;
     text-shadow: 1px 2px black
 }
-/* 
-.pickedcard > h5 {
-    position: absolute;
-    bottom: 20px;
-    color: whitesmoke;
-    text-shadow: 1px 2px black;
-    white-space: wrap;
-    text-overflow: clip;
-    background-color: hsla(0, 0%, 0%, 0.212);
-    overflow-x: hidden;
-    overflow-y: hidden;
 
-} */
 .flexthis {
     flex-wrap: wrap;
     padding: 20px;
@@ -49,4 +38,22 @@
 h1 {
     text-align: center;
     color: whitesmoke;
+}
+
+.container.show {
+    flex-wrap: wrap;
+    padding: 20px;
+    opacity: 0%;
+    display: flex;
+    width: 150px;
+    max-width: 70vw;
+    height: 200px;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0px 18px 55px 0px rgba(0, 0, 0, 0.014);
+}
+
+li {
+    list-style-type: none;
 }
