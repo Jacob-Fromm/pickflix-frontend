@@ -4,14 +4,6 @@ import "./Profile.css"
 
 class LikedMovies extends React.Component {
 
-    state = {
-        showBox: false
-    }
-
-    handleBoxToggle = () => {
-        this.setState({ showBox: !this.state.showBox });
-    }
-
     render() {
     let {poster, title, genre} = this.props.movieObj.movie
     return (
@@ -19,14 +11,12 @@ class LikedMovies extends React.Component {
         <li>
             <div 
             style={{ backgroundImage: `url(${poster})` }}
-            className={`container${this.state.showBox ? " show" : " pickedcard"}`} onClick={this.handleBoxToggle}>
-            {this.state.showBox ? 
-                <div className="details">
-                    <h1>{title}</h1>
-                    <h4>{genre}</h4>
-                </div>
-                : ""}
-                    
+            className="pickedcard" >
+            </div>
+            <div className="button center">
+                <button className="likedmoviebutton">More Info</button>
+                <div className="divider"/>
+                <button className="likedmoviebutton">Delete Movie</button>
             </div>
         </li>
     </div>

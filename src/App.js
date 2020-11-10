@@ -15,6 +15,7 @@ class App extends Component {
   return (
     <div className="root" >
       <div >
+
         <NavBar/>  
         <Route path="/pickpage" component={PickPage}/>
         <Route path="/welcome" component={Welcome} />

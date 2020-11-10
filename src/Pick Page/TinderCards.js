@@ -37,12 +37,12 @@ class TinderCards extends React.Component {
 
     addLikedMovie = (movie) => {
         let likedMovieObj = {
-            user_id: 2,
+            user_id: 1,
             movie_id: movie.id
         }
         // const alert = this.props.alert;
         // Need to include the current_userid stuff here
-        if(this.state.likedMovies.filter((obj) => {return obj.user.id === 2}).map(obj => obj.movie.netflixid).includes(movie.netflixid)) {
+        if(this.state.likedMovies.filter((obj) => {return obj.user.id === 1}).map(obj => obj.movie.netflixid).includes(movie.netflixid)) {
             console.log("Did not add")
             // this.alert.show("You've already picked this flix!")
             alert("You've already picked this flix!")

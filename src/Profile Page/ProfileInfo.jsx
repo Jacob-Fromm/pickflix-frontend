@@ -6,7 +6,7 @@ class ProfileInfo extends React.Component {
     }
     
     render () {
-    console.log("Jake", this.state.user)
+    // console.log("Jake", this.state.userInfo)
     return (
     <div>
         {/* <h1>Hello, {name}!</h1>

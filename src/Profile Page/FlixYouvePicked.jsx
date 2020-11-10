@@ -17,9 +17,18 @@ class FlixYouvePicked extends React.Component {
             })
         })
     }
+
+    deleteMovie = (movieObjId) => {
+        let updatedLikedMovies = this.state.likedMovies.filter((movieObj) => {
+        return movieObj.id != movieObjId
+        })
+        this.setState({
+            likedMovies: updatedLikedMovies
+        })
+    }
     
     allLikedMovies = () => {
-        return this.state.likedMovies.map((movieObj) => <LikedMovies key={movieObj.id} movieObj={movieObj} /> )
+        return this.state.likedMovies.map((movieObj) => <LikedMovies key={movieObj.id} movieObj={movieObj} deleteMovie={this.deleteMovie}/> )
     }
 
     render() {

@@ -35,7 +35,7 @@
     padding: 20px;
 }
 
-h1 {
+.title {
     text-align: center;
     color: whitesmoke;
 }
@@ -56,4 +56,33 @@ h1 {
 
 li {
     list-style-type: none;
+}
+
+.button.center {
+    padding: 12px;
+}
+
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+
+.likedmoviebutton {
+        width: 50;
+        height: 40px;
+        margin-top: 10px;
+        background: transparent;
+        text-align: center;
+        cursor: pointer;
+        color: #eee;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: all 1s ease;
+    }
+
+.likedmoviebutton:hover {
+    background: #D50000;
+    border: none;
+    transition: all 1.5s ease;
 }
