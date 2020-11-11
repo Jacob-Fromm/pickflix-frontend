@@ -2,15 +2,15 @@ import React from 'react';
 
 class ProfileInfo extends React.Component {
     state = {
-        user: this.props.userInfo
+
     }
     
     render () {
-    // console.log("Jake", this.state.userInfo)
+    console.log(this.props.currentUser)
     return (
     <div>
-        {/* <h1>Hello, {name}!</h1>
-        <img src={image} /> */}
+        <h1>Hello, {this.props.currentUser.user.name}!</h1>
+        <img src={this.props.currentUser.user.image} />
     </div>
     )}
 

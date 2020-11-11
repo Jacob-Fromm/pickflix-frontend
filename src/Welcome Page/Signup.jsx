@@ -20,19 +20,15 @@ changeHandler = (e) => {
 
 localSubmitHandler = (e) => {
     e.preventDefault()
-    let newUser = this.state
-    fetch("http://localhost:3000/users", {
-        method: "POST",
-        headers: {
-            "content-type": "application/json",
-            "accept": "application/json"
-        },
-        body: JSON.stringify(newUser)
-    })
-        .then(r=>r.json())
-        .then(_data => {
-            this.setState({ name: "", photo: "", username: "", password: "", signupComplete: true})
-        })
+    let newUser = {
+        name: this.state.name, 
+        image: this.state.image,
+        username: this.state.username,
+        password: this.state.password
+    }
+    this.props.submitHandler(newUser)
+    this.setState({ name: "", photo: "", username: "", password: "", signupComplete: true})
+    
 
     
 }

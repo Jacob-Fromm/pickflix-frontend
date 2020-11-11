@@ -21,9 +21,10 @@ class Profile extends React.Component {
     
     
     render() {
+        console.log("Profile.jsx props:", this.props.currentUser)
     return (
     <div>
-        <ProfileInfo userInfo={this.state.users[0]} />
+        <ProfileInfo currentUser={this.props.currentUser} />
         <FlixYouvePicked/>
     </div>
     )}

@@ -12,10 +12,21 @@ import Signup from './Welcome Page/Signup';
 class App extends Component {
 
   state = {
-    newUser: ""
+    currentUser: ""
   }
+  
   signupSubmitHandler = (newUser) => {
-    this.setState({newUser: newUser})
+    fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      body: JSON.stringify(newUser)
+    })
+      .then(r => r.json())
+      .then(user => this.setState({ currentUser: user }))
+
   }
   render() {
   return (
@@ -23,11 +34,24 @@ class App extends Component {
       <div >
 
         <NavBar/>  
-        <Route path="/pickpage" component={PickPage}/>
+        <Route 
+          path="/pickpage" 
+          render={(props) => (
+            <PickPage {...props} currentUser={this.state.currentUser}/>
+          )}
+          />
         <Route path="/welcome" component={Welcome}  />
-        <Route path="/profile" component={Profile} />
+        <Route path="/profile" 
+          render={(props) => (
+            <Profile {...props} currentUser={this.state.currentUser} />
+          )} />
         <Route path="/login" component={LogIn} />
-        <Route path="/signup" component={Signup}/>
+        <Route 
+          path="/signup" 
+          render={(props) => (
+            <Signup {...props} submitHandler={this.signupSubmitHandler}/>
+          )}
+          />
         
       </div>
     </div>
