@@ -11,6 +11,12 @@ import Signup from './Welcome Page/Signup';
 
 class App extends Component {
 
+  state = {
+    newUser: ""
+  }
+  signupSubmitHandler = (newUser) => {
+    this.setState({newUser: newUser})
+  }
   render() {
   return (
     <div className="root" >
@@ -18,10 +24,10 @@ class App extends Component {
 
         <NavBar/>  
         <Route path="/pickpage" component={PickPage}/>
-        <Route path="/welcome" component={Welcome} />
+        <Route path="/welcome" component={Welcome}  />
         <Route path="/profile" component={Profile} />
         <Route path="/login" component={LogIn} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/signup" component={Signup}/>
         
       </div>
     </div>

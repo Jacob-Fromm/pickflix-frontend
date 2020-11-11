@@ -1,18 +1,22 @@
 import React from 'react';
 import "./LogIn.css"
 
-export default class LogIn extends React.Component {
-
+class LogIn extends React.Component {
+    state = {
+        name: "",
+        password: ""
+    }
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
 
     render(){
+        console.log("props", this.props)
         return (
             <div>
-                <div class="back">
+                <div className="back">
                     <form className="loginform">
-                        <div class="box-input">
+                        <div className="box-input">
                             <input type="username" name="username" placeholder="Username" required value={this.state.username} onChange={this.changeHandler} />
                             <input type="password" name="password" placeholder="Password" required value={this.state.password} onChange={this.changeHandler} />
                             <button className="loginbutton" type="submit">Log In</button>
@@ -24,3 +28,5 @@ export default class LogIn extends React.Component {
     }
 
 }
+
+export default LogIn
