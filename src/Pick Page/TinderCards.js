@@ -45,6 +45,10 @@ class TinderCards extends React.Component {
                 this.createMovieObjects(this.state.movies)
             })
 
+        fetch("http://localhost:3000/liked_movies")
+            .then(resp => resp.json())
+            .then((data) => this.setState({ likedMovies: data }))
+
     }
 
     createMovieObjects = (moviesArr) => {
@@ -87,27 +91,6 @@ class TinderCards extends React.Component {
                 this.setState((prevState) => ({frankensteinMoviesArray: [...prevState.frankensteinMoviesArray, movie]}) )  
                 })
             }
-            // .then(moviesArray => {
-            //     this.setState({
-            //         movies: moviesArray
-            //     })
-            // })
-
-
-        // .then((moviesArray) => {
-        //     this.setState({
-        //     movies: moviesArray.sort(() => Math.random() - Math.random()).slice(0, 100).filter(movie => movie.country === "USA" && movie.language === "English" && movie.media === "movie")
-            // movies: moviesArray.filter(movie => movie.country === "USA" && movie.language === "English")
-            // need to render the movies that DO NOT match any of the movies in the likedMovies db
-        
-        // }
-        // fetch("http://localhost:3000/liked_movies")
-        // .then(resp => resp.json())
-        // .then((data) => {
-        //     this.setState({
-        //     likedMovies: data
-        //     })
-        // })
             
 
     addLikedMovie = (movie) => {
@@ -115,7 +98,6 @@ class TinderCards extends React.Component {
             user_id: 1,
             movie_id: movie.id
         }
-        // const alert = this.props.alert;
         // Need to include the current_userid stuff here
         if(this.state.likedMovies.filter((obj) => {return obj.user.id === 1}).map(obj => obj.movie.netflixid).includes(movie.netflixid)) {
             console.log("Did not add")
@@ -158,12 +140,26 @@ class TinderCards extends React.Component {
                 lastDirection: dir
             }))
             console.log(movie)
-            this.addLikedMovie(movie)
+            this.addMovieToDatabase(movie)
         }
         else {
             movie.priority -= 1
             this.setState({ lastDirection: dir})
         }
+    }
+
+    addMovieToDatabase = (movie) => {
+        console.log("swiped movie", movie)
+        fetch("http://localhost:3000/movies", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json"
+            },
+            body: JSON.stringify(movie)
+        })
+            .then(r=>r.json())
+            .then(addedMovie => console.log(addedMovie))
     }
 
     changeGenreFilter = (filterValue) => {
@@ -198,7 +194,6 @@ class TinderCards extends React.Component {
 
     render() {
         // let someMovies = this.state.movies.splice(0, 10)
-        console.log("frankenstein array", this.state.frankensteinMoviesArray)
     return (
         <div className="root">
             <GenreFilter
@@ -218,7 +213,7 @@ class TinderCards extends React.Component {
                 : <h2 className='infoText'>Swipe a card to get started!</h2>}
             </div>
             <div className="cardContainer" >
-            {this.state.movies.map(movie => (
+            {this.state.frankensteinMoviesArray.map(movie => (
                 <TinderCard
                 className="swipe"
                 key={movie["netflixid"]}
