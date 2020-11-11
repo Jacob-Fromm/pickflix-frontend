@@ -41,7 +41,7 @@ body {
     }
 }
 
-.card {
+.welcomecard {
 	perspective: 1000;
 	width: 350px;
 	height: 300px;
@@ -52,7 +52,7 @@ body {
 	transform: translate(-50%, -50%);
 }
 
-.card .flip {
+.welcomecard .flip {
 	transition: 0.9s;
 	transform-style: preserve-3d;
 	position: relative;
@@ -61,12 +61,12 @@ body {
 	margin: -25px auto;
 }
 
-.card .flip .front {
+.welcomecard .flip .front {
 	z-index: 2;
 }
 
-.card .flip .front,
-.card .flip .back {
+.welcomecard .flip .front,
+.welcomecard .flip .back {
 	backface-visibility: hidden;
 	position: absolute;
 	width: 100%;
@@ -74,8 +74,8 @@ body {
 }
 
 
-.card .flip .front:before,
-.card .flip .back:before {
+.welcomecard .flip .front:before,
+.welcomecard .flip .back:before {
 	transition: all 0.3s ease;		
 	border-color: transparent;
 	content: "";
@@ -101,5 +101,3 @@ body {
 	background: transparent;
 	color: #eee;
 }
-
-

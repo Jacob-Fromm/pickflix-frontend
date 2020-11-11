@@ -8,15 +8,27 @@ import {Route} from 'react-router-dom'
 import LogIn from './Welcome Page/LogIn';
 import Signup from './Welcome Page/Signup';
 import axios from "axios";
+import ls from "local-storage"
 
 
-class App extends Component {
-
+class App extends React.Component {
   state = {
     currentUser: ""
   }
+  // const [user, setUser] = React.useState(
+  //   localStorage.getItem(currentUser)
+  // )
+
+  // React.useEffect(() => {
+  //   localStorage.setItem("currentUser", JSON.stringify({currentUser}))
+  // })
+
+  componentDidMount = () => {
+    this.setState({ currentUser: ls.get("currentUser") || "" })
+  }
   
   signupSubmitHandler = (newUser) => {
+    console.log("new user in app.js", newUser)
     fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
@@ -26,10 +38,15 @@ class App extends Component {
       body: JSON.stringify(newUser)
     })
       .then(r => r.json())
-      .then(user => this.setState({ currentUser: user }))
+      .then(user => {
+        console.log(user)
+        this.setState({ currentUser: user})
+        ls.set("currentUser", user)
+      })
 
   }
   render() {
+    console.log("current user", ls.get("currentUser"))
   return (
     <div className="root" >
       <div >
@@ -38,13 +55,13 @@ class App extends Component {
         <Route 
           path="/pickpage" 
           render={(props) => (
-            <PickPage {...props} currentUser={this.state.currentUser}/>
+            <PickPage {...props} currentUser={ls.get("currentUser")}/>
           )}
           />
         <Route path="/welcome" component={Welcome}  />
         <Route path="/profile" 
           render={(props) => (
-            <Profile {...props} currentUser={this.state.currentUser} />
+            <Profile {...props} currentUser={ls.get("currentUser")} />
           )} />
         <Route path="/login" component={LogIn} />
         <Route 
