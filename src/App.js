@@ -7,6 +7,7 @@ import Profile from './Profile Page/Profile';
 import {Route} from 'react-router-dom'
 import LogIn from './Welcome Page/LogIn';
 import Signup from './Welcome Page/Signup';
+import axios from "axios";
 
 
 class App extends Component {

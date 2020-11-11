@@ -13,7 +13,7 @@ class FlixYouvePicked extends React.Component {
         .then(resp => resp.json())
         .then((likedMoviesArray) => {
             this.setState({
-            likedMovies: likedMoviesArray.filter(obj => obj.user.id === 1)
+            likedMovies: likedMoviesArray.filter(obj => obj.user.id === this.props.currentUser.user.id)
             })
         })
     }
@@ -28,7 +28,7 @@ class FlixYouvePicked extends React.Component {
     }
     
     allLikedMovies = () => {
-        return this.state.likedMovies.map((movieObj) => <LikedMovies key={movieObj.id} movieObj={movieObj} deleteMovie={this.deleteMovie}/> )
+        return this.state.likedMovies.map((movieObj) => <LikedMovies key={movieObj.id} currentUser={this.props.currentUser} movieObj={movieObj} deleteMovie={this.deleteMovie}/> )
     }
 
     render() {

@@ -25,7 +25,7 @@ class Profile extends React.Component {
     return (
     <div>
         <ProfileInfo currentUser={this.props.currentUser} />
-        <FlixYouvePicked/>
+        <FlixYouvePicked currentUser={this.props.currentUser}/>
     </div>
     )}
 
