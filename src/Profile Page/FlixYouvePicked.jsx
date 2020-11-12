@@ -36,7 +36,7 @@ class FlixYouvePicked extends React.Component {
     render() {
     return (
     <div>
-        <h1>FlixYouvePicked</h1>
+        <h1>Flix You've Picked</h1>
         <ul className="cardContainer" >
             {this.allLikedMovies()}
         </ul>

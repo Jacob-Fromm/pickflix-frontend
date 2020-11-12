@@ -1,5 +1,6 @@
 import React from 'react';
 import FlixYouvePicked from './FlixYouvePicked'
+import FlixYouveWatched from './FlixYouveWatched'
 import "./Profile.css"
 import ProfileInfo from './ProfileInfo';
 
@@ -23,9 +24,19 @@ class Profile extends React.Component {
     render() {
         console.log("Profile.jsx props:", this.props.currentUser)
     return (
-    <div>
-        <ProfileInfo currentUser={this.props.currentUser} />
-        <FlixYouvePicked currentUser={this.props.currentUser}/>
+    <div class="grid-container">
+        {/* <div class="Watched-Movies">
+            <FlixYouveWatched />
+        </div> */}
+
+        <div class="ProfileInfo">
+            <ProfileInfo currentUser={this.props.currentUser} />
+        </div>
+
+        <div class="Liked-Movies">
+            <FlixYouvePicked currentUser={this.props.currentUser}/>
+        </div>
+
     </div>
     )}
 

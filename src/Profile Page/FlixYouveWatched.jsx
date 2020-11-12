@@ -1,13 +1,13 @@
 import React from 'react';
 
-const FlexYouveWatched = () => {
+const FlixYouveWatched = () => {
 
     return (
     <div>
-        <h1>FlexYouveWatched</h1>
+        <h1>Flex You've Watched</h1>
     </div>
     )
 
 };
 
-export default FlexYouveWatched;
+export default FlixYouveWatched;

@@ -65,46 +65,79 @@ class App extends React.Component {
     return (
       
       <> 
+        {ls.get("currentUser") === null ? 
           <div className="root" >
             <div >
-              
-              <NavBar 
-              logoutHandler={this.logOutHandler}
-              currentUser={ls.get("currentUser")}
+              <Route
+                path="/pickpage"
+                render={(props) => (
+                  <PickPage {...props} currentUser={ls.get("currentUser")} />
+                )}
               />
-                <Route
-                  path="/pickpage"
-                  render={(props) => (
-                    <PickPage {...props} currentUser={ls.get("currentUser")} />
-                  )}
-                />
-                <Route path="/welcome" component={Welcome} />
-                <Route path="/profile"
-                  render={(props) => (
-                    <Profile {...props} currentUser={ls.get("currentUser")} />
-                  )} />
-                <Route path="/login" 
-                  render={(routerProps, props) => {
-                    return (
-                      <LogIn {...props} 
-                        submitHandler={this.loginSubmitHandler}
-                        routerProps={routerProps} />
-                    )
-                  }
-                    
-                  }
-                />
-                <Route
-                  path="/signup"
-                  render={(props) => (
-                    <Signup {...props} submitHandler={this.signupSubmitHandler} />
-                  )}
-                />
+              <Route path="/welcome" component={Welcome} />
+              <Route path="/profile"
+                render={(props) => (
+                  <Profile {...props} currentUser={ls.get("currentUser")} />
+                )} />
+              <Route path="/login"
+                render={(routerProps, props) => {
+                  return (
+                    <LogIn {...props}
+                      submitHandler={this.loginSubmitHandler}
+                      routerProps={routerProps} />
+                  )
+                }
+
+                }
+              />
+              <Route
+                path="/signup"
+                render={(props) => (
+                  <Signup {...props} submitHandler={this.signupSubmitHandler} />
+                )}
+              />
             </div>
           </div>
-    
-        
-      </>
+
+        :
+        <div className="root" >
+            <div >
+              <NavBar
+                logoutHandler={this.logOutHandler}
+                currentUser={ls.get("currentUser")}
+              />
+              <Route
+                path="/pickpage"
+                render={(props) => (
+                  <PickPage {...props} currentUser={ls.get("currentUser")} />
+                )}
+              />
+              <Route path="/welcome" component={Welcome} />
+              <Route path="/profile"
+                render={(props) => (
+                  <Profile {...props} currentUser={ls.get("currentUser")} />
+                )} />
+              <Route path="/login"
+                render={(routerProps, props) => {
+                  return (
+                    <LogIn {...props}
+                      submitHandler={this.loginSubmitHandler}
+                      routerProps={routerProps} />
+                  )
+                }
+
+                }
+              />
+              <Route
+                path="/signup"
+                render={(props) => (
+                  <Signup {...props} submitHandler={this.signupSubmitHandler} />
+                )}
+              />
+            </div>
+          </div>
+    }
+      </>     
       
     );
     }

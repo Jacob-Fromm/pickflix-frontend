@@ -6,6 +6,23 @@
     justify-content: center;
 }
 
+.new-user-button {
+	align-Items: center;
+	margin: auto;
+	justify-content: center;
+}
+
+.box-input {
+	position: relative;
+}
+
+.loginform {
+	position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
 body {
 	background: #111;
 	font-family: "Montserrat";

@@ -2,11 +2,13 @@ import React from 'react'
 import "./LogIn.css"
 import { Link } from "react-router-dom"
 import { Redirect } from "react-router-dom"
+import Button from '@material-ui/core/Button';
 
 class Signup extends React.Component {
 
     state = {
     name: "",
+    age: "",
     image: "",
     username: "",
     password: "",
@@ -22,14 +24,13 @@ localSubmitHandler = (e) => {
     e.preventDefault()
     let newUser = {
         name: this.state.name, 
+        age: this.state.age,
         image: this.state.image,
         username: this.state.username,
         password: this.state.password
     }
     this.props.submitHandler(newUser)
-    this.setState({ name: "", photo: "", username: "", password: "", signupComplete: true})
-    
-
+    this.setState({ name: "", age: "", photo: "", username: "", password: "", signupComplete: true})
     
 }
 render(){
@@ -42,10 +43,14 @@ render(){
                 <form onSubmit={this.localSubmitHandler}>
                     <div className="box-input">
                         <input type="name" name="name" placeholder="Name" required value={this.state.name} onChange={this.changeHandler}/>
+                        <input type="age" name="age" placeholder="Age" required value={this.state.age} onChange={this.changeHandler}/>
                         <input type="photo" name="image" placeholder="image link" required value={this.state.image} onChange={this.changeHandler}/>
                         <input type="username" name="username" placeholder="Username" required value={this.state.username} onChange={this.changeHandler}/>
                         <input type="password" name="password" placeholder="Password" required value={this.state.password} onChange={this.changeHandler}/>
-                            <button type="submit">Sign Up</button>                        
+                        <button type="submit">Sign Up</button> 
+                        <Link to="/login">
+                            <Button variant="contained" class="welcomebutton" >Back to Log In</Button>
+                        </Link>                       
                     </div>
                 </form>
             </div>

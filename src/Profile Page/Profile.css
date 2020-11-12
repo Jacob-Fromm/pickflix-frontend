@@ -1,3 +1,6 @@
+h1 {
+    color: white;
+}
 .profileinfo {
     color: white;
 }
@@ -20,27 +23,6 @@
     box-shadow: 0px 18px 55px 0px rgba(0, 0, 0, 0.493);
 }
 
-.modalcard {
-    width: 350px;
-    max-width: 60vw;
-    height: 500px;
-    padding-left: 30px;
-    justify-content: left;
-    align-items: flex-start;
-    border-radius: 20px;
-    border-color: white;
-    background-size: cover;
-    background-position: center;
-    box-shadow: 0px 18px 55px 0px rgba(0, 0, 0, 0.493);
-    animation-name: fade; 
-    animation-duration: 1s; 
-}
-
-.modalcarddivider{
-    padding-right: 20px;
-    height:auto;
-    /* display:inline-block; */
-}
 
 .flexthis {
     flex-wrap: wrap;
@@ -92,31 +74,23 @@ li {
     padding: 1px;
 }
 
-.Modal {
-    position: absolute;
-    top: 20vh;
-    left: 20vw;
-    right: 20vw;
-    bottom: 20vh;
-    background-color: rgba(0, 0, 0, 0.781);
+
+
+html, body, .grid-container { height: 100%; margin: 0; }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 0.5fr;
+  gap: 15px 15px;
+  grid-template-areas:
+    "ProfileInfo Watched-Movies"
+    "Liked-Movies Liked-Movies";
 }
 
-.Overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.479);
-}
+.Watched-Movies { grid-area: Watched-Movies; }
 
-@keyframes fade { 
-    from { 
-        top: -100px; 
-        opacity: 0; 
-    } 
-    to { 
-        top: 0px; 
-        opacity: 1; 
-    } 
-} 
+.ProfileInfo { grid-area: ProfileInfo; }
+
+.Liked-Movies { grid-area: Liked-Movies; }
+

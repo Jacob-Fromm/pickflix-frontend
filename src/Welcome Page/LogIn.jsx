@@ -1,5 +1,8 @@
 import React from 'react';
 import "./LogIn.css"
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
+
 
 class LogIn extends React.Component {
     state = {
@@ -24,6 +27,9 @@ class LogIn extends React.Component {
                             <input type="username" name="username" placeholder="Username" required value={this.state.username} onChange={this.changeHandler} />
                             <input type="password" name="password" placeholder="Password" required value={this.state.password} onChange={this.changeHandler} />
                             <button className="loginbutton" type="submit">Log In</button>
+                            <Link to="/signup">
+                                <Button variant="contained" className="welcomebutton" >New User?</Button>
+                            </Link>
                         </div>
                     </form>
                 </div>

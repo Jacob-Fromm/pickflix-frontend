@@ -18,11 +18,11 @@ const Welcome = () => {
                         </div>
                         <div className="back">
                             <Link to="/login">
-                                <Button variant="contained" class="welcomebutton" >Log In</Button>
+                                <Button variant="contained" class="welcomebutton" >Enter</Button>
                             </Link>
-                            <Link to="/signup">
+                            {/* <Link to="/signup">
                                 <Button variant="contained" class="welcomebutton" >New User?</Button>
-                            </Link>
+                            </Link> */}
                         </div>
                     </div>
                 </div>
