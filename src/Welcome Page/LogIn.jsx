@@ -3,19 +3,23 @@ import "./LogIn.css"
 
 class LogIn extends React.Component {
     state = {
-        name: "",
+        username: "",
         password: ""
     }
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
 
+    localSubmitHandler = (e) => {
+        e.preventDefault()
+        this.props.submitHandler(this.state)
+    }
+
     render(){
-        console.log("props", this.props)
         return (
             <div>
                 <div className="back">
-                    <form className="loginform">
+                    <form className="loginform" onSubmit={this.localSubmitHandler}>
                         <div className="box-input">
                             <input type="username" name="username" placeholder="Username" required value={this.state.username} onChange={this.changeHandler} />
                             <input type="password" name="password" placeholder="Password" required value={this.state.password} onChange={this.changeHandler} />

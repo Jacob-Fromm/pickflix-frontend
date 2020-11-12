@@ -4,7 +4,7 @@ import NavBar from './NavBar'
 import PickPage from './Pick Page/PickPage';
 import Welcome from './Welcome Page/Welcome';
 import Profile from './Profile Page/Profile';
-import {Route} from 'react-router-dom'
+import {Route, Redirect, Switch, withRouter} from 'react-router-dom'
 import LogIn from './Welcome Page/LogIn';
 import Signup from './Welcome Page/Signup';
 import axios from "axios";
@@ -13,18 +13,19 @@ import ls from "local-storage"
 
 class App extends React.Component {
   state = {
-    currentUser: ""
+    currentUser: "",
+    allUsers: [],
+    isLoggedIn: false
   }
-  // const [user, setUser] = React.useState(
-  //   localStorage.getItem(currentUser)
-  // )
-
-  // React.useEffect(() => {
-  //   localStorage.setItem("currentUser", JSON.stringify({currentUser}))
-  // })
 
   componentDidMount = () => {
     this.setState({ currentUser: ls.get("currentUser") || "" })
+    fetch("http://localhost:3000/users")
+      .then(resp => resp.json())
+      .then(users => {
+        this.setState({ allUsers: users })
+      })
+  
   }
   
   signupSubmitHandler = (newUser) => {
@@ -39,42 +40,74 @@ class App extends React.Component {
     })
       .then(r => r.json())
       .then(user => {
-        console.log(user)
-        this.setState({ currentUser: user})
+        this.setState({ currentUser: user,})
         ls.set("currentUser", user)
       })
-
   }
+
+  loginSubmitHandler = (userInfo) => {
+    let foundUser = this.state.allUsers.find(user => userInfo.username === user.username)
+    if (foundUser) {
+      console.log("found")
+      this.setState({ currentUser: foundUser, isLoggedIn: true })
+      ls.set("currentUser", foundUser)
+      this.props.history.push("/pickpage")
+    }
+ }
+
+ logoutHandler = () => {
+   this.setState({currentUser: {}})
+   ls.remove("currentUser")
+ }
+
   render() {
-    console.log("current user", ls.get("currentUser"))
-  return (
-    <div className="root" >
-      <div >
-
-        <NavBar/>  
-        <Route 
-          path="/pickpage" 
-          render={(props) => (
-            <PickPage {...props} currentUser={ls.get("currentUser")}/>
-          )}
-          />
-        <Route path="/welcome" component={Welcome}  />
-        <Route path="/profile" 
-          render={(props) => (
-            <Profile {...props} currentUser={ls.get("currentUser")} />
-          )} />
-        <Route path="/login" component={LogIn} />
-        <Route 
-          path="/signup" 
-          render={(props) => (
-            <Signup {...props} submitHandler={this.signupSubmitHandler}/>
-          )}
-          />
+    console.log("Logged in as:", ls.get("currentUser"))
+    return (
+      
+      <> 
+          <div className="root" >
+            <div >
+              
+              <NavBar 
+              logoutHandler={this.logOutHandler}
+              currentUser={ls.get("currentUser")}
+              />
+                <Route
+                  path="/pickpage"
+                  render={(props) => (
+                    <PickPage {...props} currentUser={ls.get("currentUser")} />
+                  )}
+                />
+                <Route path="/welcome" component={Welcome} />
+                <Route path="/profile"
+                  render={(props) => (
+                    <Profile {...props} currentUser={ls.get("currentUser")} />
+                  )} />
+                <Route path="/login" 
+                  render={(routerProps, props) => {
+                    return (
+                      <LogIn {...props} 
+                        submitHandler={this.loginSubmitHandler}
+                        routerProps={routerProps} />
+                    )
+                  }
+                    
+                  }
+                />
+                <Route
+                  path="/signup"
+                  render={(props) => (
+                    <Signup {...props} submitHandler={this.signupSubmitHandler} />
+                  )}
+                />
+            </div>
+          </div>
+    
         
-      </div>
-    </div>
-  );
+      </>
+      
+    );
+    }
   }
-}
 
-export default App;
+export default withRouter(App)

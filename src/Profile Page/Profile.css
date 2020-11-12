@@ -1,8 +1,13 @@
+.profileinfo {
+    color: white;
+}
+
+
 .cardContainer {
     flex-wrap: wrap;
-  }
+}
 
-.container.pickedcard {
+.pickedcard {
     display: flex;
     width: 150px;
     padding: 20px;
@@ -15,64 +20,64 @@
     box-shadow: 0px 18px 55px 0px rgba(0, 0, 0, 0.493);
 }
 
-
-.details> h1 {
-    position: relative;
-    bottom: 10px;
-    color: whitesmoke;
-    text-shadow: 1px 2px black;
+.modalcard {
+    width: 350px;
+    max-width: 60vw;
+    height: 500px;
+    padding-left: 30px;
+    justify-content: left;
+    align-items: flex-start;
+    border-radius: 20px;
+    border-color: white;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0px 18px 55px 0px rgba(0, 0, 0, 0.493);
+    animation-name: fade; 
+    animation-duration: 1s; 
 }
 
-.details > h4 {
-    position: absolute;
-    bottom: 40px;
-    color: whitesmoke;
-    text-shadow: 1px 2px black
+.modalcarddivider{
+    padding-right: 20px;
+    height:auto;
+    /* display:inline-block; */
 }
 
 .flexthis {
     flex-wrap: wrap;
-    padding: 20px;
+    padding: 15px;
+    margin: 0;
+
 }
 
 .title {
     text-align: center;
-    color: whitesmoke;
+    color: white;
 }
 
-.container.show {
-    flex-wrap: wrap;
-    padding: 20px;
-    opacity: 0%;
-    display: flex;
-    width: 150px;
-    max-width: 70vw;
-    height: 200px;
-    border-radius: 20px;
-    background-size: cover;
-    background-position: center;
-    box-shadow: 0px 18px 55px 0px rgba(0, 0, 0, 0.014);
-}
 
 li {
     list-style-type: none;
+    vertical-align: baseline;
+
 }
 
 .button.center {
-    padding: 12px;
+    padding: 10px;
 }
 
 .divider{
     width:5px;
     height:auto;
-    display:inline-block;
+    /* display:inline-block; */
 }
 
 .likedmoviebutton {
-        width: 50;
-        height: 40px;
+        justify-content: center;
+        width: 30;
+        height: auto;
         margin-top: 10px;
         background: transparent;
+        border-color: transparent;
         text-align: center;
         cursor: pointer;
         color: #eee;
@@ -82,7 +87,36 @@ li {
     }
 
 .likedmoviebutton:hover {
-    background: #D50000;
     border: none;
     transition: all 1.5s ease;
+    padding: 1px;
 }
+
+.Modal {
+    position: absolute;
+    top: 20vh;
+    left: 20vw;
+    right: 20vw;
+    bottom: 20vh;
+    background-color: rgba(0, 0, 0, 0.781);
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.479);
+}
+
+@keyframes fade { 
+    from { 
+        top: -100px; 
+        opacity: 0; 
+    } 
+    to { 
+        top: 0px; 
+        opacity: 1; 
+    } 
+} 
