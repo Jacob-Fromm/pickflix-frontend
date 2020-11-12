@@ -2,11 +2,11 @@ import React from 'react';
 import TinderCards from './TinderCards'
 
 
-const PickPage = () => {
+const PickPage = (props) => {
 
     return (
     <div>
-        <TinderCards />
+        <TinderCards currentUser={props.currentUser}/>
     </div>
     )
 

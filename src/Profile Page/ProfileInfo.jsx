@@ -5,15 +5,15 @@ const ProfileInfo = (props) => {
     console.log(props)
     return (
         <div>
-            <div class="container">
-                <div class="pic">
-                    <img class="userImage" src={props.currentUser.image} />
+            <div className="container">
+                <div className="pic">
+                    <img className="userImage" src={props.currentUser.image} />
                 </div>
-                <div class="name-box">
-                    <h2>{props.currentUser.name}, <span class="age"> AGE</span></h2>
+                <div className="name-box">
+                    <h2>{props.currentUser.name}, <span className="age"> AGE</span></h2>
                     <p>DISTANCE</p>
                 </div>
-                <div class="info">
+                <div className="info">
                     <p>...</p>
                     <p>.</p>
                 </div>

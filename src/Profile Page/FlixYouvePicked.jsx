@@ -12,10 +12,12 @@ class FlixYouvePicked extends React.Component {
         fetch("http://localhost:3000/liked_movies")
         .then(resp => resp.json())
         .then((likedMoviesArray) => {
+            console.log("liked movies array", likedMoviesArray)
             this.setState({
-            likedMovies: likedMoviesArray.filter(obj => obj.user.id === this.props.currentUser.user.id)
+            likedMovies: likedMoviesArray.filter(obj => obj.user.id === this.props.currentUser.id)
             })
         })
+        console.log("user's liked movies", this.state.likedMovies)
     }
 
     deleteLikedMovie = (movieObjId) => {

@@ -12,14 +12,16 @@ class TinderCards extends React.Component {
         movies: [],
         omdbData: [],
         frankensteinMoviesArray: [],
+        addedMovieObj: {},
         likedMovies: [],
         likedArray: [],
         lastDirection: "",
         genreFilter: "All",
         languageFilter: "English",
         mediaFilter: "movie",
+        data: {},
+        isMovieAdded: false
     }
-   
 
     setRandomGenreIds = () => {
 
@@ -44,7 +46,6 @@ class TinderCards extends React.Component {
                 this.setState({ movies: moviesArr["ITEMS"] })
                 this.createMovieObjects(this.state.movies)
             })
-
         fetch("http://localhost:3000/liked_movies")
             .then(resp => resp.json())
             .then((data) => this.setState({ likedMovies: data }))
@@ -91,47 +92,9 @@ class TinderCards extends React.Component {
                 this.setState((prevState) => ({frankensteinMoviesArray: [...prevState.frankensteinMoviesArray, movie]}) )  
                 })
             }
-            
+    
 
-    addLikedMovie = (movie) => {
-        let likedMovieObj = {
-            user_id: 1,
-            movie_id: movie.id
-        }
-        // Need to include the current_userid stuff here
-        if(this.state.likedMovies.filter((obj) => {return obj.user.id === 1}).map(obj => obj.movie.netflixid).includes(movie.netflixid)) {
-            console.log("Did not add")
-            // this.alert.show("You've already picked this flix!")
-            alert("You've already picked this flix!")
-        }
-        else {
-            console.log("adding movie")
-            fetch("http://localhost:3000/liked_movies", {
-                method: "POST", 
-                headers: {
-                    'Content-Type': "application/json",
-                    Accepts: 'application/json'
-                },
-                body: JSON.stringify(likedMovieObj)
-            })
-            .then(response => response.json())
-            .then(data => { 
-                this.setState((prevState) => ({
-                    likedMovies: [...prevState.likedMovies, data]
-                }))
-                this.checkIfMovieMatched(data)
-            })
-        }
-    }
-
-    checkIfMovieMatched = (data) => {
-        if(this.state.likedMovies.filter((obj) => {return obj.user.id !== data.user.id}).map(obj => obj.movie.netflixid).includes(data.movie.netflixid)) {
-            alert("You've got a match!")
-        }
-        else {
-            console.log("movie did not match")
-        }
-    }
+    
     
     swipeHandler = (dir, movie) => {
         if(dir === 'right') {
@@ -139,8 +102,8 @@ class TinderCards extends React.Component {
                 likedArray: [...prevState.likedArray, movie],
                 lastDirection: dir
             }))
-            console.log(movie)
             this.addMovieToDatabase(movie)
+            console.log(movie)
         }
         else {
             movie.priority -= 1
@@ -159,7 +122,58 @@ class TinderCards extends React.Component {
             body: JSON.stringify(movie)
         })
             .then(r=>r.json())
-            .then(addedMovie => console.log(addedMovie))
+            .then(data => {
+                console.log("new movie data", data)
+                this.setState({
+                    addedMovieObj: data,
+                    isMovieAdded: true
+                })
+
+            }
+            )
+        _.delay(this.addLikedMovie, 1000)
+    }
+
+    addLikedMovie = () => {
+       
+            let likedMovieObj = {
+                user_id: this.props.currentUser.id,
+                movie_id: this.state.addedMovieObj.id
+            }
+            console.log("liked movie object 103", likedMovieObj)
+            if (this.state.likedMovies.filter((obj) => { return obj.user.id === 1 }).map(obj => obj.movie.netflixid).includes(this.state.addedMovieObj.netflixid)) {
+                console.log("Did not add")
+                alert("You've already picked this flix!")
+            }
+            else {
+                console.log("adding movie")
+                fetch("http://localhost:3000/liked_movies", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': "application/json",
+                        "accept": 'application/json'
+                    },
+                    body: JSON.stringify(likedMovieObj)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("data in liked_movies POST", data)
+                        this.setState((prevState) => ({
+                            likedMovies: [...prevState.likedMovies, data]
+                        }))
+                        this.checkIfMovieMatched(data)
+                    })
+            }
+            
+    }
+
+    checkIfMovieMatched = (data) => {
+        if (this.state.likedMovies.filter((obj) => { return obj.user.id !== data.user.id }).map(obj => obj.movie.netflixid).includes(data.movie.netflixid)) {
+            alert("You've got a match!")
+        }
+        else {
+            console.log("movie did not match")
+        }
     }
 
     changeGenreFilter = (filterValue) => {
@@ -194,6 +208,7 @@ class TinderCards extends React.Component {
 
     render() {
         // let someMovies = this.state.movies.splice(0, 10)
+        let deckOfCards = _.sample(this.state.frankensteinMoviesArray, 10)
     return (
         <div className="root">
             <GenreFilter
@@ -213,7 +228,7 @@ class TinderCards extends React.Component {
                 : <h2 className='infoText'>Swipe a card to get started!</h2>}
             </div>
             <div className="cardContainer" >
-            {this.state.frankensteinMoviesArray.map(movie => (
+            {deckOfCards.map(movie => (
                 <TinderCard
                 className="swipe"
                 key={movie["netflixid"]}
