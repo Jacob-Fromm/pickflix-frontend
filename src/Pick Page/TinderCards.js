@@ -5,7 +5,7 @@ import GenreFilter from './GenreFilter';
 import { withAlert } from 'react-alert'
 import _ from 'underscore'
 // import { Console } from 'console';
-
+// THIS IS OUR PRE-PRESENTATION VERSION. I <3 U
 class TinderCards extends React.Component {
 
     state= {
@@ -20,7 +20,8 @@ class TinderCards extends React.Component {
         languageFilter: "English",
         mediaFilter: "movie",
         data: {},
-        isMovieAdded: false
+        isMovieAdded: false,
+        genreIdsWithNamesArray: []
     }
 
     setRandomGenreIds = () => {
@@ -33,6 +34,19 @@ class TinderCards extends React.Component {
 
     componentDidMount = () => {
         let genreIdString = this.setRandomGenreIds()
+
+        fetch("https://unogs-unogs-v1.p.rapidapi.com/api.cgi?t=genres", {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": "8afd7ffa98msh66c5e14a405f912p133da5jsne6eb4d751d16",
+                "x-rapidapi-host": "unogs-unogs-v1.p.rapidapi.com"
+            }
+        })
+            .then(response => response.json())
+            .then(data => this.setState({genreIdsWithNamesArray: data["ITEMS"]}))
+            .catch(err => {
+                console.error(err);
+            });
         
         fetch(`https://rapidapi.p.rapidapi.com/aaapi.cgi?q=%7Bquery%7D-!1900%2C2018-!0%2C5-!0%2C10-!${genreIdString}-!Any-!Any-!Any-!gt100-!%7Bdownloadable%7D&t=ns&cl=all&st=adv&ob=Relevance&p=1&sa=and`, {
             "method": "GET",
@@ -176,42 +190,44 @@ class TinderCards extends React.Component {
         }
     }
 
-    changeGenreFilter = (filterValue) => {
-        this.setState({
-            genreFilter: filterValue
-        })
-    }
+    // changeGenreFilter = (filterValue) => {
+    //     this.setState({
+    //         genreFilter: filterValue
+    //     })
+    // }
 
-    changeLanguageFilter = (filterValue) => {
-        this.setState({
-            languageFilter: filterValue
-        })
-    }
+    // changeLanguageFilter = (filterValue) => {
+    //     this.setState({
+    //         languageFilter: filterValue
+    //     })
+    // }
 
-    changeMediaFilter = (filterValue) => {
-        this.setState({
-            mediaFilter: filterValue
-        })
-    }
+    // changeMediaFilter = (filterValue) => {
+    //     this.setState({
+    //         mediaFilter: filterValue
+    //     })
+    // }
 
-    filterAllMovies = () => {
-        let arrayToReturn = this.state.movies
-        if(this.state.genreFilter !== "All"){
-            arrayToReturn = this.state.movies.filter((movieObj) => {
-                return movieObj.includes(this.state.genreFilter)
-        })
-        }
-        this.setState({
-            movies: arrayToReturn
-        })
-    }
+    // filterAllMovies = () => {
+    //     let arrayToReturn = this.state.movies
+    //     if(this.state.genreFilter !== "All"){
+    //         arrayToReturn = this.state.movies.filter((movieObj) => {
+    //             return movieObj.includes(this.state.genreFilter)
+    //     })
+    //     }
+    //     this.setState({
+    //         movies: arrayToReturn
+    //     })
+    // }
 
     render() {
         // let someMovies = this.state.movies.splice(0, 10)
-        let deckOfCards = _.sample(this.state.frankensteinMoviesArray, 10)
+        let smallDeck = this.state.frankensteinMoviesArray.splice(0, 10)
+        let deckOfCards = _.sample(this.state.frankensteinMoviesArray, 10).filter(movie => movie.priority > 5)
+        console.log(this.state.genreIdsWithNamesArray)
     return (
         <div className="root">
-            <GenreFilter
+            {/* <GenreFilter
                 genreFilter={this.state.genreFilter}
                 languageFilter={this.state.languageFilter}
                 mediaFilter={this.state.mediaFilter}
@@ -221,14 +237,14 @@ class TinderCards extends React.Component {
             />
                 <br></br>
                 <hr></hr>
-                <br></br>
+                <br></br> */}
             <div>
                 {this.state.lastDirection === 'right' ? <div className="flex"><h2 className='infoText'>Added to Liked Movies!</h2></div> 
                 : this.state.lastDirection === 'left' ? <div className="flex"><h2 className='infoText'>That Movie Sucked!</h2></div> 
                 : <h2 className='infoText'>Swipe a card to get started!</h2>}
             </div>
             <div className="cardContainer" >
-            {deckOfCards.map(movie => (
+            {smallDeck.map(movie => (
                 <TinderCard
                 className="swipe"
                 key={movie["netflixid"]}
