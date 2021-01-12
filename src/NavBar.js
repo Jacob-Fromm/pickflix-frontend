@@ -23,7 +23,7 @@ const NavBar = (props) => {
                 </IconButton>
             </Link>
             <Link to="/welcome">
-                <img src="https://fontmeme.com/temporary/d5947c25c8c66e59884ec5b36ad1d770.png"/>
+                <img src="https://fontmeme.com/permalink/210111/72a4a804c01a2fa22cb39362f6132c1d.png" alt="netflix-font" border="0"/>
             </Link>
             <Link to="/pickpage">
                 <IconButton>

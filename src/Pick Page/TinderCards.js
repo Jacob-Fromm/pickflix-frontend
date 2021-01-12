@@ -224,7 +224,6 @@ class TinderCards extends React.Component {
         // let someMovies = this.state.movies.splice(0, 10)
         let smallDeck = this.state.frankensteinMoviesArray.splice(0, 10)
         let deckOfCards = _.sample(this.state.frankensteinMoviesArray, 10).filter(movie => movie.priority > 5)
-        console.log(this.state.genreIdsWithNamesArray)
     return (
         <div className="root">
             {/* <GenreFilter

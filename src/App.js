@@ -40,9 +40,10 @@ class App extends React.Component {
     })
       .then(r => r.json())
       .then(user => {
-        this.setState({ currentUser: user,})
+        this.setState({ currentUser: user})
         ls.set("currentUser", user)
       })
+      console.log(this.state.currentUser)
   }
 
   loginSubmitHandler = (userInfo) => {
